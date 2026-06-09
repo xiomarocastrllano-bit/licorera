@@ -72,6 +72,8 @@ export function inicializarLogin() {
 
             const filtroPendiente = localStorage.getItem("filtro_pendiente_barrilete");
             if (filtroPendiente) {
+                localStorage.setItem("filtro_barrilete", filtroPendiente);
+                localStorage.removeItem("filtro_pendiente_barrilete");
                 window.location.href = "index_productos.html";
             } else {
                 window.location.href = "index.html";
@@ -120,6 +122,14 @@ export function inicializarRegistro() {
             isLoggedIn: true,
             userName: name
         }));
-        window.location.href = "index.html";
+
+        const filtroPendiente = localStorage.getItem("filtro_pendiente_barrilete");
+        if (filtroPendiente) {
+            localStorage.setItem("filtro_barrilete", filtroPendiente);
+            localStorage.removeItem("filtro_pendiente_barrilete");
+            window.location.href = "index_productos.html";
+        } else {
+            window.location.href = "index.html";
+        }
     });
 }
