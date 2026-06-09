@@ -1,5 +1,6 @@
 import { renderizarProducto, inicializarMenuHamburguesa, renderizarTarjetas, inicializarBuscador } from './js/ui.js';
 import { inicializarCarrito } from './js/carritoUI.js';
+import { inicializarSesion, inicializarLogin, inicializarRegistro } from './js/user.js';
 
 let listaProductos = [];
 let currentIndex = 0;
