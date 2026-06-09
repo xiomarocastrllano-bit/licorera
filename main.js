@@ -35,7 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarSesion();
     inicializarLogin();
     inicializarRegistro();
-    
     iniciarApp();
     inicializarMenuHamburguesa();
     cargarTarjetas();
@@ -45,48 +44,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const btnAccion = document.getElementById("btn-accion");
-        if (btnAccion) {
-            btnAccion.addEventListener("click", () => {
-                alert("¡Paso 1: El clic funciona!");
-    
-                const sessionData = localStorage.getItem("session_barrilete");
-                let isLoggedIn = false;
-                if (sessionData) {
-                    try {
-                        const parsed = JSON.parse(sessionData);
-                        isLoggedIn = parsed.isLoggedIn === true;
-                    } catch (e) { isLoggedIn = false; }
-                }
-    
-                let tituloSucio = "";
-                const h1Principal = document.getElementById("titulo-principal");
-                
-                if (listaProductos && listaProductos[currentIndex]) {
-                    tituloSucio = listaProductos[currentIndex].titulo || "";
-                } else if (h1Principal) {
-                    tituloSucio = h1Principal.innerHTML;
-                }
-    
-                let productoActual = tituloSucio
-                    .replace(/<[^>]*>/g, " ")
-                    .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, "")
-                    .trim()
-                    .split(" ")[0]
-                    .toLowerCase();
-    
-                alert("Paso 2: Detecté el producto -> " + productoActual + " | ¿Logueado?: " + isLoggedIn);
-    
-                if (isLoggedIn) {
-                    if (productoActual) localStorage.setItem("filtro_barrilete", productoActual);
-                    alert("Paso 3: Intentando ir a index_productos.html");
-                    window.location.href = "index_productos.html";
-                } else {
-                    if (productoActual) localStorage.setItem("filtro_pendiente_barrilete", productoActual);
-                    alert("Paso 3: Intentando ir a login.html");
-                    window.location.href = "login.html";
-                }
-            });
-        }else {
-            console.log("No encontré el botón 'btn-accion' en el HTML.");
-    };
+    if (btnAccion) {
+        btnAccion.addEventListener("click", () => {
+            const sessionData = localStorage.getItem("session_barrilete");
+            let isLoggedIn = false;
+            if (sessionData) {
+                try {
+                    const parsed = JSON.parse(sessionData);
+                    isLoggedIn = parsed.isLoggedIn === true;
+                } catch (e) { isLoggedIn = false; }
+            }
+
+            let tituloSucio = "";
+            const h1Principal = document.getElementById("titulo-principal");
+            
+            if (listaProductos && listaProductos[currentIndex]) {
+                tituloSucio = listaProductos[currentIndex].titulo || "";
+            } else if (h1Principal) {
+                tituloSucio = h1Principal.innerHTML;
+            }
+
+            let productoActual = tituloSucio
+                .replace(/<[^>]*>/g, " ")
+                .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, "")
+                .trim()
+                .split(" ")[0]
+                .toLowerCase();
+
+            if (isLoggedIn) {
+                if (productoActual) localStorage.setItem("filtro_barrilete", productoActual);
+                window.location.href = "index_productos.html";
+            } else {
+                if (productoActual) localStorage.setItem("filtro_pendiente_barrilete", productoActual);
+                window.location.href = "login.html";
+            }
+        });
+    }
 });
