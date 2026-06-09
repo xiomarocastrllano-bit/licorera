@@ -31,6 +31,10 @@ async function iniciarApp() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    inicializarSesion();
+    inicializarLogin();
+    inicializarRegistro();
+    
     iniciarApp();
     inicializarMenuHamburguesa();
     cargarTarjetas();
