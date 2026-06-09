@@ -155,7 +155,19 @@ function mostrarDetalle(producto) {
 export function inicializarBuscador(listaTarjetas) {
   const input = document.getElementById('buscador');
   if (!input) return;
+  
+  const filtroGuardado = localStorage.getItem("filtro_barrilete") || localStorage.getItem("filtro_pendiente_barrilete");
 
+    if (filtroGuardado) {
+    input.value = filtroGuardado;
+    localStorage.removeItem("filtro_barrilete");
+    localStorage.removeItem("filtro_pendiente_barrilete");
+        
+    const umbral = 0.8;
+    const filtradas = filtrarPorSimilitud(listaTarjetas, filtroGuardado, umbral);
+    renderizarTarjetas(filtradas);
+  }
+    
   input.addEventListener('input', () => {
     const texto = input.value.trim().toLowerCase();
     if (texto === '') {
