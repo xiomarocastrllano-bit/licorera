@@ -56,16 +56,21 @@ document.addEventListener('DOMContentLoaded', () => {
                 } catch (e) { isLoggedIn = false; }
             }
 
-            let productoActual = "";
+            let tituloSucio = "";
+            const h1Principal = document.getElementById("titulo-principal");
+            
             if (listaProductos && listaProductos[currentIndex]) {
-                const tituloSucio = listaProductos[currentIndex].titulo || "";
-                productoActual = tituloSucio
-                    .replace(/<[^>]*>/g, " ")
-                    .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, "")
-                    .trim()
-                    .split(" ")[0]
-                    .toLowerCase();
+                tituloSucio = listaProductos[currentIndex].titulo || "";
+            } else if (h1Principal) {
+                tituloSucio = h1Principal.innerHTML;
             }
+
+            let productoActual = tituloSucio
+                .replace(/<[^>]*>/g, " ")
+                .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, "")
+                .trim()
+                .split(" ")[0]
+                .toLowerCase();
 
             if (isLoggedIn) {
                 if (productoActual) localStorage.setItem("filtro_barrilete", productoActual);
