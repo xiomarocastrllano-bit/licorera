@@ -50,12 +50,10 @@ export function inicializarLogin() {
 
     if (!loginForm) return;
     loginForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+        e.preventDefault();     
         const identificador = document.getElementById("login-email")?.value.trim();
         const password = document.getElementById("login-password")?.value.trim();
-
         const usuariosRegistrados = JSON.parse(localStorage.getItem("usuarios_barrilete")) || [];
-
         const coincideDemo = (
             (identificador === USUARIO_DEMO.email || identificador === USUARIO_DEMO.name) && 
             password === USUARIO_DEMO.password
@@ -71,7 +69,13 @@ export function inicializarLogin() {
                 isLoggedIn: true,
                 userName: usuarioActivo.name
             }));
-            window.location.href = "index.html";
+
+            const filtroPendiente = localStorage.getItem("filtro_pendiente_barrilete");
+            if (filtroPendiente) {
+                window.location.href = "index_productos.html";
+            } else {
+                window.location.href = "index.html";
+            }
         } else {
             if (errorBox) {
                 errorBox.textContent = "El usuario/correo o la contraseña son incorrectos.";
