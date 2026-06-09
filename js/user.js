@@ -7,12 +7,14 @@ const USUARIO_DEMO = {
 export function inicializarSesion() {
     const sessionData = localStorage.getItem("session_barrilete");
     let isLoggedIn = false;
-
-    if (sessionData) {
+    if (sessionData && sessionData !== "null" && sessionData !== "undefined") {
         try {
             const parsed = JSON.parse(sessionData);
-            isLoggedIn = parsed.isLoggedIn === true;
+            if (parsed && parsed.isLoggedIn === true) {
+                isLoggedIn = true;
+            }
         } catch (e) {
+            console.error("Error leyendo la sesión:", e);
             isLoggedIn = false;
         }
     }
@@ -22,15 +24,19 @@ export function inicializarSesion() {
     const logoutBtn = document.getElementById("btn-logout");
 
     if (isLoggedIn) {
-        publicButtons.forEach(btn => btn.classList.add("hidden"));
-        privateButtons.forEach(btn => btn.classList.remove("hidden"));
+        publicButtons.forEach(btn => btn.style.setProperty('display', 'none', 'important'));
+        privateButtons.forEach(btn => btn.style.setProperty('display', 'flex', 'important'));
+        if (logoutBtn) logoutBtn.style.setProperty('display', 'flex', 'important');
     } else {
-        publicButtons.forEach(btn => btn.classList.remove("hidden"));
-        privateButtons.forEach(btn => btn.classList.add("hidden"));
+        publicButtons.forEach(btn => btn.style.setProperty('display', 'flex', 'important'));
+        privateButtons.forEach(btn => btn.style.setProperty('display', 'none', 'important'));
+        if (logoutBtn) logoutBtn.style.setProperty('display', 'none', 'important');
     }
 
     if (logoutBtn) {
-        logoutBtn.addEventListener("click", (e) => {
+        const nuevoLogoutBtn = logoutBtn.cloneNode(true);
+        logoutBtn.parentNode.replaceChild(nuevoLogoutBtn, logoutBtn);
+        nuevoLogoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
             localStorage.removeItem("session_barrilete");
             window.location.href = "index.html";
