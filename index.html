@@ -6,6 +6,7 @@
     <title>EL BARRILETE</title>
     <link rel="stylesheet" href="css/styles.css">
     <script type="module" src="main.js" defer></script>
+    <script src="js/auth.js" defer></script>
     <link  rel= "apple-touch-icon"  sizes= "57x57"  href= "favicon/apple-icon-57x57.png" >
     <link  rel= "apple-touch-icon"  sizes= "60x60"  href= "favicon/apple-icon-60x60.png" >
     <link  rel= "apple-touch-icon"  sizes= "72x72"  href= "favicon/apple-icon-72x72.png" >
@@ -30,20 +31,18 @@
         <h1>EL BARRILETE</h1>
     </a>
     
-    <!-- Icono hamburguesa (visible solo en móvil) -->
     <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
         <span class="hamburger"></span>
     </button>
 
-    <!-- Contenedor de navegación que se oculta en móviles -->
     <nav class="nav-botones" id="nav-botones">
-        <a href="index_nosotros.html" class="nosotros">
+        <a href="index_nosotros.html" class="nosotros private-nav hidden">
             <h2>NOSOTROS</h2>
         </a>
-        <a href="index_productos.html" class="productos">
+        <a href="index_productos.html" class="productos private-nav hidden">
             <h2>PRODUCTOS</h2>
         </a>
-        <a href="index_carrito.html" class="carrito">
+        <a href="index_carrito.html" class="carrito private-nav hidden">
             <h2>CARRITO</h2>
         </a>
 
@@ -59,6 +58,7 @@
         </a>
     </nav>
     </header>
+
     <main id="hero-container" class="producto-1">
         <div class="info-producto">
             <h1 id="titulo-principal">RON VIEJO <br> <span>DE CALDAS</span></h1>
@@ -73,6 +73,7 @@
             <div class="punto"></div>
         </div>
     </main>
+
     <footer>
         <span class="creditos">Basante Andres, Belalcazar Naomy, Cortes Kevyn, Escobar Cristiam, Gonzales Juan</span>
     </footer>
