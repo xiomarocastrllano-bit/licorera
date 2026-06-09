@@ -80,7 +80,7 @@ header.cabezera {
     gap: 15px;
 }
 
-.carrito, .nosotros, .productos {
+.carrito, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse, .salir {
     padding: 12px 35px;
     background: rgba(20, 20, 20, 0.8); 
     -webkit-text-fill-color: initial; 
@@ -96,7 +96,7 @@ header.cabezera {
     border: 1px solid #c5a059;
 }
 
-.carrito h2, .nosotros h2, .productos h2, .carrito, .nosotros, .productos {
+.carrito h2, .nosotros h2, .productos h2, .volver-inicio h2, .iniciar-sesion h2, .registrarse h2, .salir h2, .carrito, .nosotros, .productos, .volver-inicio, .iniciar-sesion, .registrarse {
     background: linear-gradient(to bottom, #96703d 0%, #f3d596 50%, #96703d 100%);
     background-clip: text;
     -webkit-background-clip: text;
@@ -107,13 +107,26 @@ header.cabezera {
     text-transform: uppercase;
 }
 
-.carrito:hover, .nosotros:hover, .productos:hover {
+.salir h2 {
+    background: linear-gradient(to bottom, #ff9999 0%, #8b0000 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.carrito:hover, .nosotros:hover, .productos:hover, .volver-inicio:hover, .iniciar-sesion:hover, .registrarse:hover {
     border-color: #f3d596;
     background: #1a1a1a;
     box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
 }
 
-.carrito::after, .nosotros::after, .productos::after {
+.salir:hover {
+    border-color: #ff9999;
+    background: #150000;
+    box-shadow: 0 0 15px rgba(139, 0, 0, 0.4);
+}
+
+.carrito::after, .nosotros::after, .productos::after, .volver-inicio::after, .iniciar-sesion::after, .registrarse::after, .salir::after {
     content: "";
     position: absolute;
     top: 0;
@@ -126,8 +139,16 @@ header.cabezera {
     z-index: -1; 
 }
 
+.salir::after {
+    background: radial-gradient(circle, rgba(139, 0, 0, 0.4) 0%, transparent 70%);
+}
+
 .carrito:hover::after, .nosotros:hover::after, .productos:hover::after {
     transform: scale(4);
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* =============================================
@@ -806,8 +827,210 @@ PÁGINA DE CARRITO
 }
 
 /* =============================================
+PAGINA DE USUARIO
+============================================= */
+
+    .login-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: calc(100vh - 130px); 
+        padding: 0 20px;
+        box-sizing: border-box;
+    }
+
+    .login-section {
+        width: 100%;
+        max-width: 420px;
+    }
+
+    /* Ajustado exactamente igual al diseño de tus .card de productos */
+    .login-card {
+        background: rgba(20, 20, 20, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        border-radius: 15px;
+        padding: 40px 30px;
+        text-align: center;
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Efecto hover idéntico al de las tarjetas del catálogo */
+    .login-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    }
+
+    /* Título con el gradiente dorado oficial de EL BARRILETE */
+    .login-card h2 {
+        text-align: center;
+        margin-bottom: 10px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .login-subtitle {
+        text-align: center;
+        color: #d1d1d1;
+        font-size: 0.9rem;
+        margin-bottom: 30px;
+        letter-spacing: 0.5px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+        text-align: left; /* Alinea los labels a la izquierda para un llenado cómodo */
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        color: #b48d6c; /* Tono bronce/dorado suave para las etiquetas */
+    }
+
+    /* Inputs adaptados a la estética oscura */
+    .form-group input {
+        width: 100%;
+        padding: 14px 20px;
+        border-radius: 50px; /* Redondeados en sintonía con tus buscadores y botones */
+        border: 1px solid rgba(197, 160, 89, 0.4);
+        background: rgba(10, 10, 10, 0.6);
+        font-size: 1rem;
+        color: white;
+        outline: none;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+        border-color: #f3d596;
+        background: rgba(26, 26, 26, 0.9);
+        box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);
+    }
+
+    /* Botón de ingreso modificado para lucir como tus botones dorados .card-boton */
+    .btn-primary-link {
+        display: inline-block;
+        width: 100%;
+        padding: 5px 0;
+        background: rgba(20, 20, 20, 0.8);
+        border: 1px solid #c5a059;
+        border-radius: 50px;
+        text-transform: uppercase;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary-link h2 {
+        margin: 8px 0;
+        font-size: 0.9rem;
+        font-weight: bold;
+        letter-spacing: 2px;
+        /* Sobrescribimos el gradiente para que el texto del botón responda correctamente */
+        background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .btn-primary-link:hover {
+        background: #1a1a1a;
+        border-color: #f3d596;
+        box-shadow: 0 0 15px rgba(197, 160, 89, 0.3);
+    }
+
+    .btn-primary-link:active {
+        transform: scale(0.97);
+    }
+
+    /* Caja de alertas de error con estilo integrado */
+    .error-box {
+        background-color: rgba(139, 0, 0, 0.2);
+        color: #ff9999;
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid #8b0000;
+        margin-bottom: 20px;
+        font-size: 0.9rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+/* ====================
+PÁGINA DE REGISTRO
+==================== */
+
+.register-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 130px); 
+        margin-top: 80px; 
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .register-section {
+        width: 100%;
+        max-width: 440px;
+    }
+
+    .register-card {
+        background: rgba(20, 20, 20, 0.8);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(197, 160, 89, 0.3);
+        border-radius: 15px;
+        padding: 35px 30px;
+        text-align: center;
+        color: white;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .register-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(197, 160, 89, 0.2);
+    }
+
+    .register-card h2 {
+        text-align: center;
+        margin-bottom: 8px;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        background: linear-gradient(to bottom, #96703d, #f3d596, #96703d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .register-subtitle {
+        text-align: center;
+        color: #d1d1d1;
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+        letter-spacing: 0.5px;
+    }
+
+/* =============================================
 PIE DE PÁGINA (GLOBAL)
-   ============================================= */
+============================================= */
 
 footer {
     width: 100%;
