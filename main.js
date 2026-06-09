@@ -59,7 +59,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let productoActual = "";
             if (listaProductos && listaProductos[currentIndex]) {
                 const tituloSucio = listaProductos[currentIndex].titulo || "";
-                productoActual = tituloSucio.replace(/<[^>]*>/g, " ").trim().split(" ")[0].toLowerCase();
+                productoActual = tituloSucio
+                    .replace(/<[^>]*>/g, " ")
+                    .replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ ]/g, "")
+                    .trim()
+                    .split(" ")[0]
+                    .toLowerCase();
             }
 
             if (isLoggedIn) {
