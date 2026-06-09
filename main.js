@@ -43,4 +43,32 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('carrito-items')) {
         inicializarCarrito();
     }
+
+    const btnAccion = document.getElementById("btn-accion");
+    if (btnAccion) {
+        btnAccion.addEventListener("click", () => {
+            const sessionData = localStorage.getItem("session_barrilete");
+            let isLoggedIn = false;
+            if (sessionData) {
+                try {
+                    const parsed = JSON.parse(sessionData);
+                    isLoggedIn = parsed.isLoggedIn === true;
+                } catch (e) { isLoggedIn = false; }
+            }
+
+            let productoActual = "";
+            if (listaProductos && listaProductos[currentIndex]) {
+                const tituloSucio = listaProductos[currentIndex].titulo || "";
+                productoActual = tituloSucio.replace(/<[^>]*>/g, " ").trim().split(" ")[0].toLowerCase();
+            }
+
+            if (isLoggedIn) {
+                if (productoActual) localStorage.setItem("filtro_barrilete", productoActual);
+                window.location.href = "index_productos.html";
+            } else {
+                if (productoActual) localStorage.setItem("filtro_pendiente_barrilete", productoActual);
+                window.location.href = "login.html";
+            }
+        });
+    }
 });
