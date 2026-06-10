@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.location.href = "index_productos.html";
             } else {
                 if (productoActual) localStorage.setItem("filtro_pendiente_barrilete", productoActual);
-                window.location.href = "login.html";
+                window.location.href = "index_login.html";
             }
         });
     }
